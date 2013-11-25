@@ -17,4 +17,7 @@
 
 - (UIView *)view;
 
+- (void)freeMemory;
+- (void)showAlert:(NSString *)message;
+
 @end
