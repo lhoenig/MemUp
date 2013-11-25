@@ -16,7 +16,6 @@
 		80AA00E31843751C00B9C1B8 /* MemUp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = MemUp; sourceTree = BUILT_PRODUCTS_DIR; };
 		80AA00E61843751C00B9C1B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		80AA00E81843751C00B9C1B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		80AA00ED1843751C00B9C1B8 /* control.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = control.txt; path = Package/DEBIAN/control.txt; sourceTree = "<group>"; };
 		80AA00EE1843751C00B9C1B8 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; name = control; path = Package/DEBIAN/control; sourceTree = "<group>"; };
 		80AA00F01843751C00B9C1B8 /* PackageVersion.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PackageVersion.plist; sourceTree = "<group>"; };
 		80AA00F11843751C00B9C1B8 /* MemUp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MemUp-Prefix.pch"; sourceTree = "<group>"; };
@@ -94,7 +93,6 @@
 		80AA00EC1843751C00B9C1B8 /* DEBIAN */ = {
 			isa = PBXGroup;
 			children = (
-				80AA00ED1843751C00B9C1B8 /* control.txt */,
 				80AA00EE1843751C00B9C1B8 /* control */,
 			);
 			name = DEBIAN;
