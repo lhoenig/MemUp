@@ -12,6 +12,19 @@
 		80AA00F41843751C00B9C1B8 /* MemUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AA00F31843751C00B9C1B8 /* MemUpController.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		80B89D1A18438FCA003638EB /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		80AA00E31843751C00B9C1B8 /* MemUp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = MemUp; sourceTree = BUILT_PRODUCTS_DIR; };
 		80AA00E61843751C00B9C1B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -26,7 +39,6 @@
 		80AA00FB1843751C00B9C1B8 /* WeeAppBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "WeeAppBackground@2x.png"; path = "Package/System/Library/WeeAppPlugins/MemUp.bundle/WeeAppBackground@2x.png"; sourceTree = "<group>"; };
 		80AA00FC1843751C00B9C1B8 /* WeeAppBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WeeAppBackground.png; path = Package/System/Library/WeeAppPlugins/MemUp.bundle/WeeAppBackground.png; sourceTree = "<group>"; };
 		80AA00FD1843751C00B9C1B8 /* BBWeeAppController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBWeeAppController.h; sourceTree = "<group>"; };
-		80B89D1618438A5A003638EB /* freemem */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = freemem; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +83,6 @@
 		80AA00EA1843751C00B9C1B8 /* MemUp */ = {
 			isa = PBXGroup;
 			children = (
-				80B89D1618438A5A003638EB /* freemem */,
 				80AA00F21843751C00B9C1B8 /* MemUpController.h */,
 				80AA00F31843751C00B9C1B8 /* MemUpController.m */,
 				80AA00FD1843751C00B9C1B8 /* BBWeeAppController.h */,
@@ -162,6 +173,7 @@
 				80AA00DE1843751C00B9C1B8 /* Sources */,
 				80AA00DF1843751C00B9C1B8 /* Frameworks */,
 				80AA00E01843751C00B9C1B8 /* Headers */,
+				80B89D1A18438FCA003638EB /* Copy Files */,
 				80AA00E11843751C00B9C1B8 /* ShellScript */,
 			);
 			buildRules = (
@@ -298,7 +310,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				iOSOpenDevBuildPackageOnAnyBuild = YES;
 				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = 141.23.65.193;
+				iOSOpenDevDevice = 10.0.1.5;
 				iOSOpenDevInstallOnAnyBuild = NO;
 				iOSOpenDevInstallOnProfiling = YES;
 				iOSOpenDevRespringOnInstall = YES;
@@ -320,7 +332,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				iOSOpenDevBuildPackageOnAnyBuild = YES;
 				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = 141.23.65.193;
+				iOSOpenDevDevice = 10.0.1.5;
 				iOSOpenDevInstallOnAnyBuild = NO;
 				iOSOpenDevInstallOnProfiling = YES;
 				iOSOpenDevRespringOnInstall = YES;

@@ -10,14 +10,20 @@
 #import <UIKit/UIKit.h>
 #import "BBWeeAppController.h"
 
-@interface MemUpController : NSObject <BBWeeAppController>
+@interface MemUpController : NSObject <BBWeeAppController, UIGestureRecognizerDelegate>
 {
     UIView *_view;
+    UIActivityIndicatorView *indicator;
+    UILabel *lbl;
 }
+
+@property (retain) UITapGestureRecognizer *tapRec;
 
 - (UIView *)view;
 
 - (void)freeMemory;
+
 - (void)showAlert:(NSString *)message;
+
 
 @end
