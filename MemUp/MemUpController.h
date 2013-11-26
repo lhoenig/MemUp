@@ -15,6 +15,9 @@
     UIView *_view;
     UIActivityIndicatorView *indicator;
     UILabel *lbl;
+    UIView *_dimView;
+    UIView *usedMemoryView;
+    NSTimer *updateTimer;
 }
 
 @property (retain) UITapGestureRecognizer *tapRec;
