@@ -15,18 +15,13 @@
     UIView *_view;
     UIActivityIndicatorView *indicator;
     UILabel *lbl;
-    UIView *_dimView;
+    UIView *dimView;
     UIView *usedMemoryView;
     NSTimer *updateTimer;
 }
 
-@property (retain) UITapGestureRecognizer *tapRec;
+@property (retain) UILongPressGestureRecognizer *pressRec;
 
 - (UIView *)view;
-
-- (void)freeMemory;
-
-- (void)showAlert:(NSString *)message;
-
 
 @end

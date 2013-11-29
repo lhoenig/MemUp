@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		805A2B6D1844B32F00259ABE /* MUTapGestureRecognizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 805A2B6B1844B32F00259ABE /* MUTapGestureRecognizer.h */; };
-		805A2B6E1844B32F00259ABE /* MUTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 805A2B6C1844B32F00259ABE /* MUTapGestureRecognizer.m */; };
 		80AA00E71843751C00B9C1B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80AA00E61843751C00B9C1B8 /* Foundation.framework */; };
 		80AA00E91843751C00B9C1B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80AA00E81843751C00B9C1B8 /* UIKit.framework */; };
 		80AA00F41843751C00B9C1B8 /* MemUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AA00F31843751C00B9C1B8 /* MemUpController.m */; };
@@ -28,8 +26,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		805A2B6B1844B32F00259ABE /* MUTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUTapGestureRecognizer.h; sourceTree = "<group>"; };
-		805A2B6C1844B32F00259ABE /* MUTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUTapGestureRecognizer.m; sourceTree = "<group>"; };
 		805A2B6F1844F1AF00259ABE /* WeeAppBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WeeAppBackground.png; sourceTree = "<group>"; };
 		805A2B701844F1AF00259ABE /* WeeAppBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WeeAppBackground@2x.png"; sourceTree = "<group>"; };
 		80AA00E31843751C00B9C1B8 /* MemUp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = MemUp; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,8 +88,6 @@
 				80AA00F21843751C00B9C1B8 /* MemUpController.h */,
 				80AA00F31843751C00B9C1B8 /* MemUpController.m */,
 				80AA00FD1843751C00B9C1B8 /* BBWeeAppController.h */,
-				805A2B6B1844B32F00259ABE /* MUTapGestureRecognizer.h */,
-				805A2B6C1844B32F00259ABE /* MUTapGestureRecognizer.m */,
 				805A2B6F1844F1AF00259ABE /* WeeAppBackground.png */,
 				805A2B701844F1AF00259ABE /* WeeAppBackground@2x.png */,
 				80AA00EB1843751C00B9C1B8 /* Package */,
@@ -170,7 +164,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				805A2B6D1844B32F00259ABE /* MUTapGestureRecognizer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,7 +236,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				80AA00F41843751C00B9C1B8 /* MemUpController.m in Sources */,
-				805A2B6E1844B32F00259ABE /* MUTapGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
