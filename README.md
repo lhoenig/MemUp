@@ -9,7 +9,7 @@ Created using [iOSOpenDev](https://github.com/kokoabim/iOSOpenDev).
 
 ### Building requirements
 * Jailbroken iOS device running iOS 6 (not tested on iOS 7 because there is no JB yet)  
-* Xcode and [iOSOpenDev](https://iosopendev.com) installed  
+* Xcode and [iOSOpenDev](http://iosopendev.com/download/) installed  
 
 ### Installation from source
 * iOSOpenDevDevice environment variable in Xcode build settings to the IP of your iOS device  
