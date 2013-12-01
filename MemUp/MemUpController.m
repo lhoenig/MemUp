@@ -42,7 +42,7 @@
         
         // TODO: handle orientation changes in terms of layout/frame
         _view = [[UIView alloc] initWithFrame:CGRectMake(LEFT_VIEW_OFFSET, 0, VIEW_WIDTH, VIEW_HEIGHT)];
-        _view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        _view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
         // Background view
 		UIImage *bg = [[UIImage imageWithContentsOfFile:@"/System/Library/WeeAppPlugins/MemUp.bundle/WeeAppBackground.png"] stretchableImageWithLeftCapWidth:5 topCapHeight:71];
