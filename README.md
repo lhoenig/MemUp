@@ -19,4 +19,4 @@ Created using [iOSOpenDev](https://github.com/kokoabim/iOSOpenDev).
 ### If you just want to install:
 * Use the provided package and on the iOS device, run  
 `$ sudo dpkg -i com.rub1k.MemUp_1.0-1_iphoneos-arm.deb; killall SpringBoard`  
-And of course you have to make it visible in NC by putting it in then list of displayed Widgets in Preferences -> Notifications.
+* And of course you have to make it visible in NC by putting it in then list of displayed Widgets in Preferences -> Notifications.
