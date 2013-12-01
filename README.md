@@ -13,7 +13,8 @@ Created using [iOSOpenDev](https://github.com/kokoabim/iOSOpenDev).
 
 ### Installation from source
 * Set `iOSOpenDevDevice` environment variable in Xcode build settings to the IP of your iOS device  
-  ![Build settings](http://i.imgur.com/t8UpZ2N.png)
+  
+  ![Build settings](http://i.imgur.com/t8UpZ2N.png)  
 * Setup key-based ssh authentication between build host and iOS device for automatic installation of package  
 * Hit `Cmd-Shift-I`
 
