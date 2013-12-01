@@ -18,8 +18,7 @@
 #define UI_UPDATE_IVAL 5
 
 #define USEDVIEW_OPACITY 0.4
-#define OVERLAY_VIEW_OPACITY 0.7
-#define BORDER_ALPHA 1
+//#define BORDER_ALPHA 1
 
 #define LEFT_VIEW_OFFSET 2
 
@@ -96,35 +95,10 @@
         lbl.textColor = [UIColor whiteColor];
         lbl.font = [UIFont boldSystemFontOfSize:24];
         
-        /*
-         // On-tap overlay view and label
-         dimView = [[UIView alloc] initWithFrame:modFrame];
-         dimView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:OVERLAY_VIEW_OPACITY];
-         dimView.layer.cornerRadius = 5.0f;
-         [dimView addSubview:indicator];
-         
-         // Dim view label
-         UILabel *dimViewLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-         dimViewLabel.backgroundColor = [UIColor clearColor];
-         dimViewLabel.textAlignment = UITextAlignmentCenter;
-         dimViewLabel.textColor = [UIColor whiteColor];
-         dimViewLabel.font = [UIFont boldSystemFontOfSize:17];
-         dimViewLabel.text = @"Free";
-         dimViewLabel.frame = CGRectMake(0,
-         (VIEW_HEIGHT / 2) - ([dimViewLabel.text sizeWithFont:dimViewLabel.font].height / 2),
-         dimView.frame.size.width,
-         [dimViewLabel.text sizeWithFont:dimViewLabel.font].height);
-         dimView.alpha = 0;
-         [dimView addSubview:dimViewLabel];
-         [dimView bringSubviewToFront:dimViewLabel];
-         */
-        
-        [self updateUIComponents:NO];
+        [self updateUIComponents];
         
         [_view addSubview:usedMemoryView];
         [_view addSubview:lbl];
-        //[_view addSubview:dimView];
-        
         [_view bringSubviewToFront:btn];
         
         [self startUpdateTimer:UI_UPDATE_IVAL];
@@ -142,7 +116,8 @@
     return image;
 }
 
-// Not used atm
+
+// Not used atm, experimental
 - (void)useMemoryByAllocatingImages:(int)n {
     LogDebug(@"Allocating %i images.", n);
     
@@ -152,21 +127,43 @@
     }
 }
 
-- (void)updateUIComponents:(BOOL)animated {
+
+- (void)updateUIComponents {
+    
+    LogDebug(@"memup: updating UI");
+    
+    float used_memory = (float)abs(free_mem_bytes()) / (float)[self physicalMemory];
+    float used_reverse = 1 - used_memory;
+
+    lbl.text = [self constructLabelText];
+
+    usedMemoryView.frame = CGRectMake(usedMemoryView.frame.origin.x,
+                                      usedMemoryView.frame.origin.y,
+                                      VIEW_WIDTH * used_reverse,
+                                      usedMemoryView.frame.size.height);
+    
+    lbl.frame = CGRectMake(((usedMemoryView.frame.size.width / 2) - ([lbl.text sizeWithFont:lbl.font].width / 2)),
+                           (VIEW_HEIGHT / 2) - ([lbl.text sizeWithFont:lbl.font].height / 2),
+                           [lbl.text sizeWithFont:lbl.font].width,
+                           [lbl.text sizeWithFont:lbl.font].height);
+}
+
+
+- (void)updateUIComponentsAnimated {
+    
+    LogDebug(@"memup: updating UI animated");
     
     float used_memory = (float)abs(free_mem_bytes()) / (float)[self physicalMemory];
     float used_reverse = 1 - used_memory;
     
-    if (animated) {
-        CATransition *animation = [CATransition animation];
-        animation.duration = ANIM_UPDATE_UI_DUR;
-        animation.type = kCATransitionFade;
-        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-        [lbl.layer addAnimation:animation forKey:@"changeTextTransition"];
-    }
-    lbl.text = [self updatedLabelText];
+    CATransition *animation = [CATransition animation];
+    animation.duration = ANIM_UPDATE_UI_DUR;
+    animation.type = kCATransitionFade;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    [lbl.layer addAnimation:animation forKey:@"changeTextTransition"];
+    lbl.text = [self constructLabelText]; // change text using CATransition
 
-    [UIView animateWithDuration:animated ? ANIM_UPDATE_UI_DUR : 0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:ANIM_UPDATE_UI_DUR delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         
         usedMemoryView.frame = CGRectMake(usedMemoryView.frame.origin.x,
                                           usedMemoryView.frame.origin.y,
@@ -182,7 +179,7 @@
 }
 
 
-- (NSString *)updatedLabelText {
+- (NSString *)constructLabelText {
     int totalMemMB = (int)((float)[self physicalMemory] / BYTE_TO_MB);
     
     //lbl.text = [NSString stringWithFormat:@"%llu / %i", ([self getPhysicalMemoryValue] / BYTE_TO_MB) - ((int)(free_mem_bytes() / BYTE_TO_MB)), totalMemMB];
@@ -195,7 +192,7 @@
     if (updateTimer) {
         [updateTimer invalidate];
     }
-    updateTimer = [NSTimer timerWithTimeInterval:UI_UPDATE_IVAL target:self selector:@selector(updateUIComponents:) userInfo:nil repeats:YES];
+    updateTimer = [NSTimer timerWithTimeInterval:UI_UPDATE_IVAL target:self selector:@selector(updateUIComponentsAnimated) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:updateTimer forMode:NSDefaultRunLoopMode];
 }
 
@@ -218,7 +215,7 @@
     //logMemStats();
         
     [self startUpdateTimer:UI_UPDATE_IVAL];
-    [self updateUIComponents:YES];
+    [self updateUIComponentsAnimated];
 }
 
 - (int)freememLoop {
@@ -275,7 +272,6 @@ void logMemStats() {
     vm_statistics_data_t vm_stat;
     if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS)
         LogError(@"Failed to fetch vm statistics");
-
     natural_t mem_used = (vm_stat.active_count +
                           vm_stat.inactive_count +
                           vm_stat.wire_count) * pagesize;
