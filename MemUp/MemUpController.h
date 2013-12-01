@@ -17,10 +17,11 @@
     UILabel *lbl;
     UIView *dimView;
     UIView *usedMemoryView;
+    UIButton *btn;
     NSTimer *updateTimer;
 }
 
-@property (retain) UILongPressGestureRecognizer *pressRec;
+@property (retain) UITapGestureRecognizer *tapRec;
 
 - (UIView *)view;
 

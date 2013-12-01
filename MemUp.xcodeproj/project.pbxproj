@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		806FB479184ACFAD0067972B /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 806FB478184ACFAD0067972B /* CoreImage.framework */; };
+		806FB47B184ACFC40067972B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 806FB47A184ACFC40067972B /* ImageIO.framework */; };
+		806FB47F184B27050067972B /* Logging.h in Headers */ = {isa = PBXBuildFile; fileRef = 806FB47E184B27050067972B /* Logging.h */; };
 		80AA00E71843751C00B9C1B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80AA00E61843751C00B9C1B8 /* Foundation.framework */; };
 		80AA00E91843751C00B9C1B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80AA00E81843751C00B9C1B8 /* UIKit.framework */; };
 		80AA00F41843751C00B9C1B8 /* MemUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AA00F31843751C00B9C1B8 /* MemUpController.m */; };
@@ -28,6 +31,9 @@
 /* Begin PBXFileReference section */
 		805A2B6F1844F1AF00259ABE /* WeeAppBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WeeAppBackground.png; sourceTree = "<group>"; };
 		805A2B701844F1AF00259ABE /* WeeAppBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WeeAppBackground@2x.png"; sourceTree = "<group>"; };
+		806FB478184ACFAD0067972B /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		806FB47A184ACFC40067972B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		806FB47E184B27050067972B /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
 		80AA00E31843751C00B9C1B8 /* MemUp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = MemUp; sourceTree = BUILT_PRODUCTS_DIR; };
 		80AA00E61843751C00B9C1B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		80AA00E81843751C00B9C1B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -48,6 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				806FB47B184ACFC40067972B /* ImageIO.framework in Frameworks */,
+				806FB479184ACFAD0067972B /* CoreImage.framework in Frameworks */,
 				80AA00E71843751C00B9C1B8 /* Foundation.framework in Frameworks */,
 				80AA00E91843751C00B9C1B8 /* UIKit.framework in Frameworks */,
 			);
@@ -76,6 +84,8 @@
 		80AA00E51843751C00B9C1B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				806FB47A184ACFC40067972B /* ImageIO.framework */,
+				806FB478184ACFAD0067972B /* CoreImage.framework */,
 				80AA00E61843751C00B9C1B8 /* Foundation.framework */,
 				80AA00E81843751C00B9C1B8 /* UIKit.framework */,
 			);
@@ -85,9 +95,10 @@
 		80AA00EA1843751C00B9C1B8 /* MemUp */ = {
 			isa = PBXGroup;
 			children = (
+				80AA00FD1843751C00B9C1B8 /* BBWeeAppController.h */,
+				806FB47E184B27050067972B /* Logging.h */,
 				80AA00F21843751C00B9C1B8 /* MemUpController.h */,
 				80AA00F31843751C00B9C1B8 /* MemUpController.m */,
-				80AA00FD1843751C00B9C1B8 /* BBWeeAppController.h */,
 				805A2B6F1844F1AF00259ABE /* WeeAppBackground.png */,
 				805A2B701844F1AF00259ABE /* WeeAppBackground@2x.png */,
 				80AA00EB1843751C00B9C1B8 /* Package */,
@@ -164,6 +175,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				806FB47F184B27050067972B /* Logging.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
