@@ -11,7 +11,7 @@ Created using [iOSOpenDev](https://github.com/kokoabim/iOSOpenDev).
 * Jailbroken iOS device running iOS 6 (not tested on iOS 7 because there is no JB yet)  
 * Xcode and [iOSOpenDev](https://iosopendev.com) installed  
 
-### Installation
+### Installation from source
 * iOSOpenDevDevice environment variable in Xcode build settings to the IP of your iOS device  
 * Setup key-based ssh authentication between build host and iOS device for automatic installation of package  
 * Hit `Cmd-Shift-I`
