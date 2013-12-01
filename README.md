@@ -8,13 +8,13 @@ An iOS NotificationCenter plugin offering a one-click memory cleanup solution.
 Created using [iOSOpenDev](https://github.com/kokoabim/iOSOpenDev).
 
 ### Building requirements
--- Jailbroken iOS device running iOS 6 (not tested on iOS 7 because there is no JB yet)  
--- Xcode and [iOSOpenDev](https://iosopendev.com) installed  
+* Jailbroken iOS device running iOS 6 (not tested on iOS 7 because there is no JB yet)  
+* Xcode and [iOSOpenDev](https://iosopendev.com) installed  
 
 ### Installation
--- iOSOpenDevDevice environment variable in Xcode build settings to the IP of your iOS device  
--- Setup key-based ssh authentication between build host and iOS device for automatic installation of package  
--- Hit Cmd-Shift-I
+* iOSOpenDevDevice environment variable in Xcode build settings to the IP of your iOS device  
+* Setup key-based ssh authentication between build host and iOS device for automatic installation of package  
+* Hit `Cmd-Shift-I`
 
 ### If you just want to install:
 -- Use the provided package and on the iOS device, run  
