@@ -5,7 +5,8 @@ MemUp
 Current memory usage shown in MB. Tap to MemUp!
 
 An iOS NotificationCenter plugin offering a single-tap memory cleanup solution.  
-Created using [iOSOpenDev](https://github.com/kokoabim/iOSOpenDev).
+Created using [iOSOpenDev](https://github.com/kokoabim/iOSOpenDev). 
+Utilizing BigBoss' `freemem` executable at the core.
 
 ### Building requirements
 * Jailbroken iOS device running iOS 6 (not tested on iOS 7 because there is no JB yet)  
