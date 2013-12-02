@@ -17,6 +17,7 @@
     UILabel *lbl;
     UIView *dimView;
     UIView *usedMemoryView;
+    UIView *bgView;
     UIButton *btn;
     NSTimer *updateTimer;
 }

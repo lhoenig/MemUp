@@ -15,12 +15,13 @@
 #define ANIM_FADE_DUR 0.2
 #define ANIM_UPDATE_UI_DUR 1.0
 
-#define UI_UPDATE_IVAL 5
+#define UI_UPDATE_IVAL 10
 
 #define USEDVIEW_OPACITY 0.4
 //#define BORDER_ALPHA 1
+#define BTN_HIGHLIGHT_OPACITY 0.6
 
-#define LEFT_VIEW_OFFSET 2
+#define SUBVIEW_INSET 2
 
 #import "MemUpController.h"
 #import <mach/mach.h>
@@ -35,58 +36,74 @@
     return VIEW_HEIGHT;
 }
 
+- (void)willAnimateRotationToInterfaceOrientation:(int)interfaceOrientation {
+    
+    NSString * const orientations[] = {
+        @"Unknown",
+        @"Portrait",
+        @"PortraitUpsideDown",
+        @"LandscapeLeft",
+        @"LandscapeRight"
+    };
+    LogDebug(@"memup: will animate to %i (%@)", interfaceOrientation, orientations[interfaceOrientation]);
+    
+    // Layout subviews
+    CGRect bounds = [UIScreen mainScreen].bounds;
+    CGRect baseRect = CGRectMake(0, 0,
+                                 UIInterfaceOrientationIsPortrait(interfaceOrientation) ? bounds.size.width : bounds.size.height,
+                                 VIEW_HEIGHT);
+    _view.frame = baseRect;
+    
+    bgView.frame = CGRectMake(SUBVIEW_INSET, 0, baseRect.size.width - 2 * SUBVIEW_INSET, baseRect.size.height);
+    
+    btn.frame = CGRectMake(SUBVIEW_INSET, 0, baseRect.size.width - 2 * SUBVIEW_INSET, baseRect.size.height -1);
+    UIImage *image = [self createImageWithSize:btn.frame.size color:[[UIColor blackColor] colorWithAlphaComponent:BTN_HIGHLIGHT_OPACITY]];
+    [btn setBackgroundImage:image forState:UIControlStateHighlighted];
+    
+    usedMemoryView.frame = CGRectMake(SUBVIEW_INSET, 0, baseRect.size.width - 2 * SUBVIEW_INSET, baseRect.size.height - 1);
+    
+    [self updateUIComponents];
+    
+    //[self screenBoundsComparison:_view];
+    //[self screenBoundsComparison:bgView];
+}
+
 - (UIView *)view {
     
 	if (_view == nil)
 	{
-        
+        LogInfo(@"memup: view nil called");
         // TODO: handle orientation changes in terms of layout/frame
-        _view = [[UIView alloc] initWithFrame:CGRectMake(LEFT_VIEW_OFFSET, 0, VIEW_WIDTH, VIEW_HEIGHT)];
+        _view = [[UIView alloc] initWithFrame:CGRectZero];
         _view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
-        // Background view
+        // Background image view
 		UIImage *bg = [[UIImage imageWithContentsOfFile:@"/System/Library/WeeAppPlugins/MemUp.bundle/WeeAppBackground.png"] stretchableImageWithLeftCapWidth:5 topCapHeight:71];
-		UIImageView *bgView = [[UIImageView alloc] initWithImage:bg];
-		bgView.frame = CGRectMake(0, 0, VIEW_WIDTH, VIEW_HEIGHT);
+		bgView = [[UIImageView alloc] initWithImage:bg];
+		bgView.frame = CGRectZero;
+        //bgView.frame = CGRectMake(0, 0, _view.frame.size.width, _view.frame.size.height);
+        //bgView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		[_view addSubview:bgView];
-        
-        /*
-        // Activity indicator
-        indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        indicator.frame = CGRectMake((_view.frame.size.width / 2) - (indicator.frame.size.width / 2),
-                                     (_view.frame.size.height / 2) - (indicator.frame.size.height / 2) + 1,
-                                     indicator.frame.size.height,
-                                     indicator.frame.size.width);
-        //LogDebug(@"Indicator frame: %@", NSStringFromCGRect(indicator.frame));
-        */
-         
-        CGRect modFrame = _view.frame;
-        modFrame.origin.x -= 2;
-        modFrame.size.height -= 1;
-        
+
         // Free memory button
         btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = modFrame;
         btn.backgroundColor = [UIColor clearColor];
         btn.layer.cornerRadius = 4.0f;
         btn.layer.masksToBounds = YES;
         [btn setTitle:@"" forState:UIControlStateNormal];
         [btn setTitle:@"Free" forState:UIControlStateHighlighted];
         
-        CGSize size = CGSizeMake(btn.frame.size.width, btn.frame.size.height);
-        UIImage *image = [self createImageWithSize:size color:[[UIColor blackColor] colorWithAlphaComponent:0.4]];
-        [btn setBackgroundImage:image forState:UIControlStateHighlighted];
         btn.titleLabel.font = [UIFont boldSystemFontOfSize:25];
         [btn addTarget:self action:@selector(freeMemoryAction) forControlEvents:UIControlEventTouchUpInside];
         [_view addSubview:btn];
         
         // Memory usage indicator view and label
-        usedMemoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, VIEW_WIDTH, VIEW_HEIGHT - 1)];
+        usedMemoryView = [[UIView alloc] initWithFrame:CGRectZero];
+        //usedMemoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, VIEW_WIDTH, VIEW_HEIGHT - 1)];
         usedMemoryView.backgroundColor = [UIColor blackColor];
         usedMemoryView.layer.opacity = USEDVIEW_OPACITY;
         usedMemoryView.layer.cornerRadius = 5.0f;
-        //usedMemoryView.layer.borderWidth = 1.0f;
-        //usedMemoryView.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:BORDER_ALPHA].CGColor;
+        [_view addSubview:usedMemoryView];
 
 		lbl = [[UILabel alloc] initWithFrame:CGRectNull];
         lbl.contentMode = UIViewContentModeScaleToFill; // to fix label not-animating issue
@@ -94,11 +111,12 @@
 		lbl.textAlignment = UITextAlignmentCenter;
         lbl.textColor = [UIColor whiteColor];
         lbl.font = [UIFont boldSystemFontOfSize:24];
-        
-        [self updateUIComponents];
-        
-        [_view addSubview:usedMemoryView];
         [_view addSubview:lbl];
+
+        //[self useMemoryByAllocatingImages:400];
+        
+        //[self updateUIComponents];
+        
         [_view bringSubviewToFront:btn];
         
         [self startUpdateTimer:UI_UPDATE_IVAL];
@@ -106,7 +124,14 @@
 	return _view;
 }
 
+
+- (void)screenBoundsComparison:(UIView *)view {
+    LogInfo(@"%@", [NSString stringWithFormat:@"memup: %@ =\t%@, screen bounds = %@", NSStringFromClass(view.class), NSStringFromCGRect(view.frame), NSStringFromCGRect([UIScreen mainScreen].bounds)]);
+}
+
+            
 - (UIImage *)createImageWithSize:(CGSize)size color:(UIColor *)color {
+    
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     [color setFill];
     UIRectFill(CGRectMake(0, 0, size.width, size.height));
@@ -117,13 +142,13 @@
 }
 
 
-// Not used atm, experimental
+// simulate memory usage
 - (void)useMemoryByAllocatingImages:(int)n {
-    LogDebug(@"Allocating %i images.", n);
+    LogDebug(@"memup: Allocating %i images.", n);
     
     NSMutableArray *a = [[NSMutableArray alloc] init];
     for (int i = 0; i < n; i++) {
-        [a addObject:[self createImageWithSize:CGSizeMake(1000, 1000) color:[UIColor blackColor]]];
+        [a addObject:[self createImageWithSize:CGSizeMake(100, 100) color:[UIColor blackColor]]];
     }
 }
 
@@ -139,7 +164,7 @@
 
     usedMemoryView.frame = CGRectMake(usedMemoryView.frame.origin.x,
                                       usedMemoryView.frame.origin.y,
-                                      VIEW_WIDTH * used_reverse,
+                                      _view.frame.size.width * used_reverse,
                                       usedMemoryView.frame.size.height);
     
     lbl.frame = CGRectMake(((usedMemoryView.frame.size.width / 2) - ([lbl.text sizeWithFont:lbl.font].width / 2)),
@@ -156,18 +181,20 @@
     float used_memory = (float)abs(free_mem_bytes()) / (float)[self physicalMemory];
     float used_reverse = 1 - used_memory;
     
+    /*
     CATransition *animation = [CATransition animation];
     animation.duration = ANIM_UPDATE_UI_DUR;
     animation.type = kCATransitionFade;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     [lbl.layer addAnimation:animation forKey:@"changeTextTransition"];
+    */
     lbl.text = [self constructLabelText]; // change text using CATransition
 
     [UIView animateWithDuration:ANIM_UPDATE_UI_DUR delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         
         usedMemoryView.frame = CGRectMake(usedMemoryView.frame.origin.x,
                                           usedMemoryView.frame.origin.y,
-                                          VIEW_WIDTH * used_reverse,
+                                          _view.frame.size.width * used_reverse,
                                           usedMemoryView.frame.size.height);
         
         lbl.frame = CGRectMake(((usedMemoryView.frame.size.width / 2) - ([lbl.text sizeWithFont:lbl.font].width / 2)),
@@ -201,6 +228,9 @@
     [ [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
 }
 
+- (void)freeMemoryActionWrapper {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{ [self freeMemoryAction]; });
+}
 
 - (void)freeMemoryAction {
     
