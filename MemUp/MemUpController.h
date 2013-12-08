@@ -20,6 +20,8 @@
     UIView *bgView;
     UIButton *btn;
     NSTimer *updateTimer;
+    
+    int nmax;
 }
 
 @property (retain) UITapGestureRecognizer *tapRec;
