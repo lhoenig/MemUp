@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>entry</key>
+	<dict>
+		<key>cell</key>
+		<string>PSLinkCell</string>
+		<key>icon</key>
+		<string>MemUpIcon.png</string>
+		<key>label</key>
+		<string>MemUp</string>
+	</dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>isStaticText</key>
+			<true/>
+			<key>label</key>
+			<string>Cleaning intensity</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSliderCell</string>
+			<key>default</key>
+			<integer>5</integer>
+			<key>defaults</key>
+			<string>com.rub1k.MemUp</string>
+			<key>key</key>
+			<string>Slider_NumberOfTimes</string>
+			<key>min</key>
+			<real>1</real>
+			<key>max</key>
+			<integer>6</integer>
+			<key>showValue</key>
+			<false/>
+			<key>PostNotification</key>
+			<string>com.rub1k.MemUp-numberOfTimesChanged</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>MemUp</string>
+</dict>
+</plist>
