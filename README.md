@@ -1,6 +1,6 @@
 MemUp
 =====
-![Looks like this](http://i.imgur.com/JEX5sez.png)
+![Screenshot](http://i.imgur.com/BTViEOy.png)
 
 Current memory usage shown in MB. Tap to MemUp!
 
