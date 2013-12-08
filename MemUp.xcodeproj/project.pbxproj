@@ -29,6 +29,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		800C82E518536B83008237A3 /* MemUp.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MemUp.plist; sourceTree = "<group>"; };
+		800C82E618536B83008237A3 /* MemUpIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MemUpIcon.png; sourceTree = "<group>"; };
+		800C82E718536B83008237A3 /* MemUpIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MemUpIcon@2x.png"; sourceTree = "<group>"; };
 		805A2B6F1844F1AF00259ABE /* WeeAppBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WeeAppBackground.png; sourceTree = "<group>"; };
 		805A2B701844F1AF00259ABE /* WeeAppBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WeeAppBackground@2x.png"; sourceTree = "<group>"; };
 		806FB478184ACFAD0067972B /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
@@ -64,6 +67,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		800C82E218536B83008237A3 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				800C82E318536B83008237A3 /* PreferenceLoader */,
+			);
+			name = Library;
+			path = Package/Library;
+			sourceTree = "<group>";
+		};
+		800C82E318536B83008237A3 /* PreferenceLoader */ = {
+			isa = PBXGroup;
+			children = (
+				800C82E418536B83008237A3 /* Preferences */,
+			);
+			path = PreferenceLoader;
+			sourceTree = "<group>";
+		};
+		800C82E418536B83008237A3 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				800C82E518536B83008237A3 /* MemUp.plist */,
+				800C82E618536B83008237A3 /* MemUpIcon.png */,
+				800C82E718536B83008237A3 /* MemUpIcon@2x.png */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
 		80AA00D91843751C00B9C1B8 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +140,7 @@
 		80AA00EB1843751C00B9C1B8 /* Package */ = {
 			isa = PBXGroup;
 			children = (
+				800C82E218536B83008237A3 /* Library */,
 				80AA00EC1843751C00B9C1B8 /* DEBIAN */,
 				80AA00F51843751C00B9C1B8 /* System */,
 			);
