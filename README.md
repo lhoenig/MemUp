@@ -8,7 +8,7 @@ An iOS NotificationCenter plugin offering a single-tap memory cleanup solution.
 Created using [iOSOpenDev](https://github.com/kokoabim/iOSOpenDev). Utilizing BigBoss' `freemem` executable at the core.
 
 ### Building requirements
-* Jailbroken iOS device running up to iOS 6  
+* Jailbroken iOS device running iOS 5-6  
 * Xcode and [iOSOpenDev](http://iosopendev.com/download/) installed  
 
 ### Installation from source
